@@ -1,0 +1,61 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    background-color: aliceblue;
+    text-align: center;
+    padding: 10px 0px;
+}
+
+.jogo {
+    background-color: #f1ebeb;
+    margin: 60px auto;
+    width: 606px;
+    border: solid 3px rgb(22, 189, 189);
+}
+
+.items {
+    border-bottom: solid 2px rgb(22, 189, 189);
+    height: 200px;
+}
+
+.items {
+    font-size: 170px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.quadrado {
+    float: left;
+    width: 200px;
+    height: 100%;
+    border-right: solid 2px rgb(22, 189, 189);
+    color: rgb(22, 189, 189);
+}
+
+.escolha {
+    text-align: center;
+}
+
+.escolha h2 {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.simbolo {
+    background-color: rgb(22, 189, 189);
+    padding: 15px 30px;
+    border-radius: 10px;
+    margin: 0px 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 32px;
+}
+
+.sumir {
+    display: none;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Jogo da Velha</title>
+</head>
+<body>
+    <header>
+        <h1>Jogo da Velha</h1>
+    </header>
+
+    <div class="escolha">
+        <h2>Escolha com qual você quer jogar:</h2>
+        <div>
+            <span class="simbolo">X</span>
+            <span>Ou</span>
+            <span class="simbolo">O</span>
+        </div>
+    </div>
+
+    <div class="vez-de-jogar">
+        <p>É a vez do jogador 1</p>
+    </div>
+
+    <div class="jogo">
+        <div class="items">
+            <div class="quadrado" id="quadrado1"></div>
+            <div class="quadrado" id="quadrado2"></div>
+            <div class="quadrado" id="quadrado3"></div>
+        </div>
+        <div class="items">
+            <div class="quadrado" id="quadrado4"></div>
+            <div class="quadrado" id="quadrado5"></div>
+            <div class="quadrado" id="quadrado6"></div>
+        </div>
+        <div class="items">
+            <div class="quadrado" id="quadrado7"></div>
+            <div class="quadrado" id="quadrado8"></div>
+            <div class="quadrado" id="quadrado9"></div>
+        </div>
+
+        <div class="resultado">
+            <p class="ganhador"></p>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
