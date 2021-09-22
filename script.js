@@ -1,81 +1,117 @@
-var quadrados = document.querySelectorAll('.quadrado')
-var escolhaDoJogador = document.querySelectorAll('.simbolo')
-const campoEscolhaSimbolo = document.querySelector('.escolha')
+const celulas = document.querySelectorAll('.quadrado')
+const placar = document.querySelector('.placar')
+const vitoriaJogadorUm = document.getElementById('vitoria-jogador-um')
+const vitoriaJogadorDois = document.getElementById('vitoria-jogador-dois')
+
+var simboloJogadorUm = ''
+var simboloJogadorDois = ''
 
 var jogada = 1
 var lista = [0,1,2,3,4,5,6,7,8]
-var jogadorUm = ''
-var jogadorDois = ''
+var qntdVitoriasJogadorUm = 0
+var qntdVitoriasJogadorDois = 0
 
-function escolhaDoSimbolo() {
-    escolhaDoJogador.forEach((elemento => {
-        elemento.addEventListener('click', function(){
+function escolherSimboloDoJogadorUmEDois() {
 
-            if (elemento.innerText == 'X') {
-                jogadorUm = elemento.innerText
-                jogadorDois = 'O'
+    const simboloDeCadaJogador = document.querySelectorAll('.simbolo')
+    const campoEscolherSimbolo = document.querySelector('.escolha')
+
+    simboloDeCadaJogador.forEach((simbolo) => {
+        simbolo.addEventListener('click', () => {
+
+            if(simbolo.innerText === 'X') {
+                simboloJogadorUm = 'X'
+                simboloJogadorDois = 'O'
 
             } else {
-                jogadorUm = elemento.innerText
-                jogadorDois = 'X'
-                
+                simboloJogadorUm = 'O'
+                simboloJogadorDois = 'X'
             }
 
-            campoEscolhaSimbolo.classList.add('sumir')
-
+            campoEscolherSimbolo.style.display = 'none'
+            placar.style.display = 'flex'
+            mostrarOProximoJogador()
+            jogadaDoUsuario()
         })
-
-    }))
+    })
 }
-escolhaDoSimbolo()
+escolherSimboloDoJogadorUmEDois()
 
-function jogadaDoJogador(){
-    quadrados.forEach((item) => {
-        item.addEventListener('click', function() {
+function mostrarOProximoJogador() {
 
-            var primeiroJogador = jogada % 2 !== 1
+    const vezDoJogador = document.querySelector('.vez-de-jogar')
 
-            if(item.innerText.length > 0) {
-                alert('Campo ja escolhido')
+    if(jogada % 2 !== 0) {
+        vezDoJogador.innerText = `É a vez do ${simboloJogadorUm} (Jogador Um)`
+    } else {
+        vezDoJogador.innerText = `É a vez do ${simboloJogadorDois} (Jogador Dois)`
+    }
+}
+
+function jogadaDoUsuario() {
+
+    celulas.forEach((celula) => {
+        celula.addEventListener('click', () => {
+
+            const celulaClicada = celula.id[8]
+            var vezDoJogadorUm = jogada % 2 !== 0
+
+            if(vezDoJogadorUm) {
+                celula.innerText = simboloJogadorUm
+                celula.style.color = "rgb(22, 189, 189)"
+                jogada++
+
+                mostrarOProximoJogador()
+                verificarSeGanhou(celulaClicada, simboloJogadorUm)
 
             } else {
+                celula.innerText = simboloJogadorDois
+                celula.style.color = "rgb(28, 54, 54)"
+                jogada++
 
-                if(primeiroJogador) {
-                    jogada++
-                    item.innerText = jogadorDois
-                    verificarSeGanhou(item.id[8], jogadorDois)
-                    
-                } else {
-                    jogada++
-                    item.innerText = jogadorUm
-                    
-                    verificarSeGanhou(item.id[8], jogadorUm)
-                }
+                mostrarOProximoJogador()
+                verificarSeGanhou(celulaClicada, simboloJogadorDois)
             }
 
         })
     })
+
 }
-jogadaDoJogador()
 
-function verificarSeGanhou(posicao, texto) {
-    lista[posicao - 1] = texto
+function verificarSeGanhou(posicao, simbolo) {
+    lista[posicao] = simbolo
 
-    if(quadradosEscolhidos(0, 1, 2) || quadradosEscolhidos(0, 4, 8) || quadradosEscolhidos(0, 3, 6) || quadradosEscolhidos(1, 4, 7)
-        || quadradosEscolhidos(2, 4, 6) || quadradosEscolhidos(2, 5, 8) || quadradosEscolhidos(3, 4, 5)  || quadradosEscolhidos(6, 7, 8)) {
-        quadrados.forEach((item) => {
-            item.innerText = ''
-        })
+    if (celulasEscolhidas(0, 1, 2) || celulasEscolhidas(0, 4, 8) || celulasEscolhidas(0, 3, 6) || celulasEscolhidas(1, 4, 7)
+        || celulasEscolhidas(2, 4, 6) || celulasEscolhidas(2, 5, 8) || celulasEscolhidas(3, 4, 5)  || celulasEscolhidas(6, 7, 8)) {
+        
+        if(simbolo === 'X') {
+            qntdVitoriasJogadorUm++
+            vitoriaJogadorUm.innerText = qntdVitoriasJogadorUm
+        } else {
+            qntdVitoriasJogadorDois++
+            vitoriaJogadorDois.innerText = qntdVitoriasJogadorDois
+        }
+
+        setTimeout(() => {
+            celulas.forEach((item) => {
+                item.innerText = ''
+                item.style.backgroundColor = '#f5f1f1'
+            })
+        }, 1000)
+
         lista = [0,1,2,3,4,5,6,7,8]
     }
 }
 
-function quadradosEscolhidos(posicao1, posicao2, posicao3) {
+function celulasEscolhidas(posicao1, posicao2, posicao3) {
     const quadrado1 = lista[posicao1]
     const quadrado2 = lista[posicao2]
     const quadrado3 = lista[posicao3]
 
     if(quadrado1 == quadrado2 && quadrado1 == quadrado3) {
+        celulas[posicao1].style.backgroundColor = '#a9eca9'
+        celulas[posicao2].style.backgroundColor = '#a9eca9'
+        celulas[posicao3].style.backgroundColor = '#a9eca9'
         return true
     } else {
         return false
