@@ -9,7 +9,7 @@
 No terminal clone o projeto
 
 ```sh
-  git clone https://github.com/nerylucastoledo/Receita.git
+  https://github.com/nerylucastoledo/JogoDaVelha.git
 ```
 
 Com o projeto na sua maquina, basta rodar o index.html
