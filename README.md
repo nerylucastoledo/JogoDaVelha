@@ -1,4 +1,4 @@
-# Jogo da Velha
+# Jogo da Velha online
 
 ## Você pode visualizar o jogo aqui:
 > https://jogodavelha-lucas.netlify.app/
