@@ -1,22 +1,11 @@
-const celulas = document.querySelectorAll('.quadrado')
-const placar = document.querySelector('.placar')
-const vitoriaJogadorUm = document.getElementById('vitoria-jogador-um')
-const vitoriaJogadorDois = document.getElementById('vitoria-jogador-dois')
-const campoQuemGanhou = document.querySelector('.vitorioso')
-const textoJogadorQueGanhou = document.querySelector('.texto-vitoria')
-
 var simboloJogadorUm = ''
 var simboloJogadorDois = ''
-
-var jogada = 1
-var lista = [0,1,2,3,4,5,6,7,8]
-var qntdVitoriasJogadorUm = 0
-var qntdVitoriasJogadorDois = 0
 
 function escolherSimboloDoJogadorUmEDois() {
 
     const simboloDeCadaJogador = document.querySelectorAll('.simbolo')
     const campoEscolherSimbolo = document.querySelector('.escolha')
+    const placar = document.querySelector('.placar')
 
     simboloDeCadaJogador.forEach((simbolo) => {
         simbolo.addEventListener('click', () => {
@@ -40,6 +29,11 @@ function escolherSimboloDoJogadorUmEDois() {
 }
 escolherSimboloDoJogadorUmEDois()
 
+
+var qntdVitoriasJogadorUm = 0
+var qntdVitoriasJogadorDois = 0
+var jogada = 1
+
 function mostrarOProximoJogador() {
 
     const vezDoJogador = document.querySelector('.vez-de-jogar')
@@ -50,6 +44,9 @@ function mostrarOProximoJogador() {
         vezDoJogador.innerText = `É a vez do Jogador Dois`
     }
 }
+
+
+const celulas = document.querySelectorAll('.quadrado')
 
 function jogadaDoUsuario() {
 
@@ -86,7 +83,16 @@ function jogadaDoUsuario() {
 
 }
 
+
+var lista = [0,1,2,3,4,5,6,7,8]
+
 function verificarSeGanhou(posicao, simbolo, jogador) {
+
+    const vitoriaJogadorUm = document.getElementById('vitoria-jogador-um')
+    const vitoriaJogadorDois = document.getElementById('vitoria-jogador-dois')
+    const campoQuemGanhou = document.querySelector('.vitorioso')
+    const textoJogadorQueGanhou = document.querySelector('.texto-vitoria')
+
     lista[posicao] = simbolo
 
     if (celulasEscolhidas(0, 1, 2) || celulasEscolhidas(0, 4, 8) || celulasEscolhidas(0, 3, 6) || celulasEscolhidas(1, 4, 7)
