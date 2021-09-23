@@ -5,7 +5,7 @@
 
 ### Um jogo simples desenvolvido usando HTML, CSS e JavaSript.
 
-> Status do Projeto: Finalizado!
+> Status do Projeto: Finalizado! :heavy_check_mark:
 
 ## Como rodar a aplicação na sua máquina :rocket:
 No terminal clone o projeto
